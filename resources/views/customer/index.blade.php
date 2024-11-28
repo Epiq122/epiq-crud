@@ -1,15 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Customers</title>
-    <link rel="stylesheet" href="../../public/assets/css/bootstrap.css">
-    <link rel="stylesheet" href="../../public/assets/css/fontawesome.min.css">
+@extends('layouts.app')
 
-</head>
-<body>
-
+@section('content')
     <div class="row justify-content-center mt-5">
         <div class="col-md-8">
             <h3>Customers</h3>
@@ -69,9 +60,9 @@
                             <td>
                                 <a href="" style="color: #2c2c2c;" class="ms-1 me-1"><i class="far fa-edit"></i></a>
                                 <a href="/customer-details.html" style="color: #2c2c2c;" class="ms-1 me-1"><i
-                                    class="far fa-eye"></i></a>
+                                        class="far fa-eye"></i></a>
                                 <a href="" style="color: #2c2c2c;" class="ms-1 me-1"><i
-                                    class="fas fa-trash-alt"></i></a>
+                                        class="fas fa-trash-alt"></i></a>
                             </td>
                         </tr>
 
@@ -81,9 +72,5 @@
             </div>
         </div>
     </div>
-    <script src="../../public/assets/js/jquery.js"></script>
-    <script src="../../public/assets/js/bootstrap.bundle.js"></script>
-    <script src="../../public/assets/js/fontawesome.js"></script>
 
-</body>
-</html>
+@endsection
