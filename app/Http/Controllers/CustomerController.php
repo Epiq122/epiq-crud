@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CustomerStoreRequest;
 use Illuminate\Http\Request;
 
 class CustomerController extends Controller
@@ -18,8 +19,9 @@ class CustomerController extends Controller
 
     }
 
-    public function store(Request $request)
+    public function store(CustomerStoreRequest $request)
     {
+        
     }
 
     public function show($id)
