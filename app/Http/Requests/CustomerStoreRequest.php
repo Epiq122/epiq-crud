@@ -9,7 +9,7 @@ class CustomerStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'image' => ['nullable'],
+            'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'],
             'first_name' => ['required', 'max:255', 'string'],
             'last_name' => ['required', 'max:255', 'string'],
             'email' => ['required', 'email', 'max:255'],
