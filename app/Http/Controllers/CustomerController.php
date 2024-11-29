@@ -10,7 +10,9 @@ class CustomerController extends Controller
 {
     public function index()
     {
-        return view('customer.index');
+        $customers = Customer::all();
+
+        return view('customer.index', compact('customers'));
 
     }
 
@@ -38,7 +40,7 @@ class CustomerController extends Controller
         $customer->about = $request->about;
         $customer->save();
 
-        return redirect()->route('home');
+        return redirect()->route('customers.index');
 
     }
 

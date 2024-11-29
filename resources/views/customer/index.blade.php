@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="row justify-content-center mt-5">
+    <div class="mt-5 row justify-content-center">
         <div class="col-md-8">
             <h3>Customers</h3>
             <div class="card">
@@ -14,7 +14,7 @@
                         </div>
                         <div class="col-md-8">
                             <form action="">
-                                <div class="input-group mb-3">
+                                <div class="mb-3 input-group">
                                     <input type="text" class="form-control" placeholder="Search anything..."
                                            aria-describedby="button-addon2">
                                     <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Search
@@ -24,7 +24,7 @@
                         </div>
                         <div class="col-md-2">
 
-                            <div class="input-group mb-3">
+                            <div class="mb-3 input-group">
                                 <select class="form-select" name="" id="">
                                     <option value="">Newest to Old</option>
                                     <option value="">Old to Newest</option>
@@ -41,7 +41,6 @@
                             <th scope="col">#</th>
                             <th scope="col">First Name</th>
                             <th scope="col">Last Name</th>
-                            <th scope="col">Date of Birth</th>
                             <th scope="col">Phone Number</th>
                             <th scope="col">Email</th>
                             <th scope="col">BAN</th>
@@ -50,21 +49,24 @@
                         </thead>
                         <tbody>
                         <tr>
-                            <th scope="row">1</th>
-                            <td>Jhone</td>
-                            <td>Deo</td>
-                            <td>7-7-2000</td>
-                            <td>881-6929-0200</td>
-                            <td>jhone@gmail.com</td>
-                            <td>1902982829282</td>
-                            <td>
-                                <a href="" style="color: #2c2c2c;" class="ms-1 me-1"><i class="far fa-edit"></i></a>
-                                <a href="/customer-details.html" style="color: #2c2c2c;" class="ms-1 me-1"><i
-                                        class="far fa-eye"></i></a>
-                                <a href="" style="color: #2c2c2c;" class="ms-1 me-1"><i
-                                        class="fas fa-trash-alt"></i></a>
-                            </td>
+                            @foreach($customers  as $customer)
+
+                                <th scope="row">{{$loop->iteration}}</th>
+                                <td>{{$customer ->first_name}}</td>
+                                <td>{{$customer ->last_name}}</td>
+                                <td>{{$customer ->phone}}</td>
+                                <td>{{$customer ->email}}</td>
+                                <td>{{$customer ->bank_account_number}}</td>
+                                <td>
+                                    <a href="" style="color: #2c2c2c;" class="ms-1 me-1"><i class="far fa-edit"></i></a>
+                                    <a href="/customer-details.html" style="color: #2c2c2c;" class="ms-1 me-1"><i
+                                            class="far fa-eye"></i></a>
+                                    <a href="" style="color: #2c2c2c;" class="ms-1 me-1"><i
+                                            class="fas fa-trash-alt"></i></a>
+                                </td>
                         </tr>
+                        @endforeach
+
 
                         </tbody>
                     </table>
