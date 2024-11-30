@@ -88,5 +88,9 @@ class CustomerController extends Controller
 
     public function destroy($id)
     {
+        $customer = Customer::findOrFail($id);
+        File::delete(public_path($customer->image));
+        $customer->delete();
+        return redirect()->route('customers.index');
     }
 }
