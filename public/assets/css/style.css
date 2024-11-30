@@ -7,13 +7,14 @@
     background-size: cover;
     background-repeat: no-repeat;
     height: 250px;
+  
 }
 
 body {
     min-height: 100vh;
-    overflow-x:hidden;
+    overflow-x: hidden;
 }
 
 .media-body {
     margin-left: 20px;
-  }
+}
