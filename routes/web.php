@@ -8,6 +8,8 @@ Route::get('/', function () {
 })->name('home');
 
 
+Route::get('customer/trash', [CustomerController::class, 'trashIndex'])->name('customers.trash');
 Route::resource('customers', CustomerController::class);
+
 
 

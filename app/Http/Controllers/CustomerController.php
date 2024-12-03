@@ -100,4 +100,15 @@ class CustomerController extends Controller
         $customer->delete();
         return redirect()->route('customers.index');
     }
+
+    public function trashIndex(Request $request)
+    {
+        $customers = Customer::when($request->search, function ($q) use ($request) {
+            $q->where('first_name', 'like', '%'.$request->search.'%')
+                ->orWhere('last_name', 'like', '%'.$request->search.'%')
+                ->orWhere('email', 'like', '%'.$request->search.'%')
+                ->orWhere('phone', 'like', '%'.$request->search.'%');
+        })->orderBy('id', $request->has('order') && $request->order == 'asc' ? 'ASC' : 'DESC')->get();
+        return view('customer.trash', compact('customers'));
+    }
 }
