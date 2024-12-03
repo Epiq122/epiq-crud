@@ -7,6 +7,7 @@ use App\Models\Customer;
 use Illuminate\Http\Request;
 use File;
 
+
 class CustomerController extends Controller
 {
     public function index(Request $request)
@@ -96,7 +97,7 @@ class CustomerController extends Controller
     public function destroy($id)
     {
         $customer = Customer::findOrFail($id);
-        File::delete(public_path($customer->image));
+//        File::delete(public_path($customer->image));
         $customer->delete();
         return redirect()->route('customers.index');
     }
@@ -108,7 +109,28 @@ class CustomerController extends Controller
                 ->orWhere('last_name', 'like', '%'.$request->search.'%')
                 ->orWhere('email', 'like', '%'.$request->search.'%')
                 ->orWhere('phone', 'like', '%'.$request->search.'%');
-        })->orderBy('id', $request->has('order') && $request->order == 'asc' ? 'ASC' : 'DESC')->get();
+        })->orderBy('id', $request->has('order') && $request->order == 'asc' ? 'ASC' : 'DESC')->onlyTrashed()->get();
         return view('customer.trash', compact('customers'));
+    }
+
+
+    // Restore specified resource from storage
+    public function restore(int $id)
+    {
+        $customer = Customer::withTrashed()->findOrFail($id);
+        $customer->restore();
+        return redirect()->back();
+    }
+
+    public function forceDestroy(int $id)
+    {
+        $customer = Customer::onlyTrashed()->findOrFail($id);
+        File::delete(public_path($customer->image));
+
+        $customer->forceDelete();
+
+        return redirect()->back();
+
+
     }
 }

@@ -11,7 +11,7 @@
                             <a href="{{route('customers.index')}}" class="btn"
                                style="background-color: #4643d3; color: white;"><i class="fas fa-chevron-left"></i> Back</a>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-8">
                             <form action="{{route('customers.index')}}" method="GET">
                                 <div class="mb-3 input-group">
                                     <input type="text" class="form-control" placeholder="Search anything..."
@@ -33,11 +33,7 @@
                                 </div>
                             </form>
                         </div>
-                        <div class="col-md-2 text-end">
-                            <a href="{{route('customers.create')}}"
-                               class="btn btn-dark"><i class="fas fa-trash-alt"></i>
-                                Trash</a>
-                        </div>
+
                     </div>
 
                 </div>
@@ -65,13 +61,11 @@
                                 <td>{{$customer ->email}}</td>
                                 <td>{{$customer ->bank_account_number}}</td>
                                 <td>
-                                    <a href="{{ route('customers.edit', $customer->id) }}" style="color: #2c2c2c;"
-                                       class="ms-1 me-1"><i
-                                            class="far fa-edit"></i></a>
 
-                                    <a href="{{route('customers.show',$customer->id)}}" style="color: #2c2c2c;"
+
+                                    <a href="{{route('customers.restore',$customer->id)}}" style="color: #2c2c2c;"
                                        class="ms-1 me-1"><i
-                                            class="far fa-eye"></i></a>
+                                            class="fas fa-redo"></i></a>
 
 
                                     <a href="javascript:;"
@@ -81,7 +75,7 @@
                                        class="ms-1 me-1"><i
                                             class="fas fa-trash-alt"></i></a>
                                     <form class="form-{{$customer->id}}"
-                                          action="{{route('customers.destroy',$customer->id)}}" method="POST">
+                                          action="{{route('customers.force.destroy',$customer->id)}}" method="POST">
                                         @csrf
                                         @method('DELETE')
 
