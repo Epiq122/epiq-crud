@@ -9,9 +9,16 @@ use File;
 
 class CustomerController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $customers = Customer::all();
+
+        $customers = Customer::when($request->search, function ($q) use ($request) {
+            $q->where('first_name', 'like', '%'.$request->search.'%')
+                ->orWhere('last_name', 'like', '%'.$request->search.'%')
+                ->orWhere('email', 'like', '%'.$request->search.'%')
+                ->orWhere('phone', 'like', '%'.$request->search.'%');
+        })->get();
+
 
         return view('customer.index', compact('customers'));
 
